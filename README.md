@@ -6,7 +6,7 @@ express.js!
 You can easily pass the express-object-mapper middleware to your express
 application. You just have to define your object structure like this:
 
-```
+```javascript
 // File: /mappings/MyType.js
 
 // Object constructor defining default values for possible fields
@@ -24,7 +24,7 @@ module.exports = MyType;
 To register your type you just have to do the following BEFORE any routes are
 called:
 
-```
+```javascript
 // ... your application code
 
 // Load ObjectMapper module
@@ -49,7 +49,7 @@ mapper.config({
 ```
 
 
-```
+```javascript
 // ... your application code
 
 // Apply middleware to Express - You have to provide the mapper object!
