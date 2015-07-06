@@ -38,6 +38,19 @@ mapper.config({
     }
 });
 
+// You can also tell the ObjectMapper to work with strict types
+// The mapper will look which type is used in your type definition
+// and refuse the mapping, if it doesnt match.
+// Activate strict mode by using the following:
+mapper.config({
+    mappings: {
+        'MyType': {
+        	path: 'mappings/MyType',
+        	strictTypes: true
+    	}
+    }
+});
+
 // Register the ObjectMapper middleware
 app.use(mapper.middleware);
 
