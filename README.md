@@ -28,6 +28,8 @@ To use the ObjectMapper you just need the following:
 var express = require('express');
 var ObjectMapper = require('express-object-mapper');
 
+var app = express();
+
 // Create a new ObjectMapper instance
 var mapper = new ObjectMapper();
 
