@@ -21,41 +21,40 @@ function MyType() {
 module.exports = MyType;
 ```
 
-To register your type you just have to do the following BEFORE any routes are
-called:
-
+To use the ObjectMapper you just need the following:
 ```javascript
-// ... your application code
+// File: server.js
 
-// Load ObjectMapper module
-var ObjectMapper = require('express-object-mapper').ObjectMapper;
+var express = require('express');
+var ObjectMapper = require('express-object-mapper');
 
-// Create new ObjectMapper instance
+// Create a new ObjectMapper instance
 var mapper = new ObjectMapper();
 
-// Configure ObjectMapper
+// Configure the ObjectMapper
 mapper.config({
     mappings: {
-        'MyType': './mappings/MyType'
+        'MyType': 'mappings/MyType'
     }
 });
 
-// You can also provide a configuration file
-mapper.config({
-    mappings: './map_config' // Would point to map_config.js which has to export a JSON configuration
+// Register the ObjectMapper middleware
+app.use(mapper.middleware);
+
+// Register a route on path /
+// When calling the route with query parameter objectType=MyType the
+// mapper will apply all input parameters where the names are also
+// defined in MyType.
+//
+// For example you call http://localhost:8080/?objectType=MyType&name=Max
+// you'll get your input data back as mapped object.
+app.get('/', function(req, res){
+	res.status(200).send(req.dataObjects['MyType']);
 });
 
-// ... your application code
+// Start the server
+app.listen(8080, function(){
+	console.log('Server is listening on 8080');
+});
+
 ```
-
-
-```javascript
-// ... your application code
-
-// Apply middleware to Express - You have to provide the mapper object!
-express.use(mapper.middleware(mapper));
-
-// ... your application code
-```
-
-
