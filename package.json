@@ -1,0 +1,19 @@
+{
+  "name": "express-object-mapper",
+  "version": "0.0.1",
+  "description": "Middleware to automatically map incoming parameters and data to predefined objects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/morphesus/express-object-mapper.git"
+  },
+  "author": "Enrico Ludwig <admin@mds-tv.de>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/morphesus/express-object-mapper/issues"
+  },
+  "homepage": "https://github.com/morphesus/express-object-mapper#readme"
+}
