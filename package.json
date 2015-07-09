@@ -1,6 +1,6 @@
 {
   "name": "express-object-mapper",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Middleware to automatically map incoming parameters and data to predefined objects",
   "main": "index.js",
   "scripts": {
