@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/morphesus/express-object-mapper#readme",
   "dependencies": {
-    "promise": "^7.0.3",
     "q": "^1.4.1",
     "underscore": "^1.8.3"
   }
