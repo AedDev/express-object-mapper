@@ -1,18 +1,26 @@
 # Express Object Mapper
 
-Here is your solution to prevent manual parameter mapping and redundant in
-express.js!
+### This documentation is valid for version 0.2.0-dev
 
-You can easily pass the express-object-mapper middleware to your express
-application. You just have to define your object structure like this:
+The Express Object Mapper automatically maps incoming request parameters
+to a predefined type. The type itself can provide informations about the
+validation of each field. Within a type you also can define functions
+which will be available on processing the request.
 
+Here is a little example for a type definition. It provides some fields
+and a function.
 ```javascript
 // File: /mappings/MyType.js
 
 // Object constructor defining default values for possible fields
 function MyType() {
     this.name     = '';
-    this.gender   = '';
+
+    // As of version 0.2.0 you can define special properties for each field
+    this.gender   = {
+        type: 'string',
+        possibleValues: [ 'male', 'female' ]
+    };
     this.age      = 0;
     this.location = '';
     // ... and so on
@@ -21,7 +29,14 @@ function MyType() {
 module.exports = MyType;
 ```
 
-To use the ObjectMapper you just need the following:
+You always have to define a default value for each field or an configuration
+object as shown in the example above. For our field this.gender we defined
+some restrictions. The field has to be typeof string and it just accepts two
+values: male and female. In all other cases the request will get rejected with
+an HTTP 500 status code.
+
+
+To make use of the Object Mapper you have to instantitiate it in your application.
 ```javascript
 // File: server.js
 
@@ -64,7 +79,7 @@ app.use(mapper.middleware);
 // For example you call http://localhost:8080/?objectType=MyType&name=Max
 // you'll get your input data back as mapped object.
 app.get('/', function(req, res){
-	res.status(200).send(req.dataObjects['MyType']);
+	res.status(200).send(req.dataObjects.MyType);
 });
 
 // Start the server
